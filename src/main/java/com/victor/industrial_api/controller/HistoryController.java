@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 public class HistoryController {
-    @Autowired TagHistoryService ths;
+    @Autowired TagHistoryService tagHistoryController;
 
     // --- READ ---
     @GetMapping("/api/tags/history")
@@ -26,44 +26,21 @@ public class HistoryController {
             @RequestParam(required = false) String end,
             @RequestParam(required = false) Quality quality
             ) {
-        return ths.getHistoricalData(tag, points, interval, start, end, quality);
+        return tagHistoryController.getHistoricalData(tag, points, interval, start, end, quality);
     }
 
     @GetMapping("/api/tags/latest")
     // Se pide el tag como parámetro en el endpoint
     // Hay que meterlo como "/api/tags/latest?tag=temperature"
     public HistoricalPoint latest(@RequestParam String tag) {
-        return ths.getLatestData(tag);
-    }
-
-
-    @Autowired
-    private HistoricalPointRepository repository;
-
-    @GetMapping("/api/test/insert")
-    public String testInsert() {
-        HistoricalPointEntity point = new HistoricalPointEntity(
-                "temperature",
-                Instant.now(),
-                25.5f,
-                Quality.GOOD
-        );
-
-        repository.save(point);
-
-        return "Point inserted with ID: " + point.getId();
-    }
-
-    @GetMapping("/api/test/list")
-    public List<HistoricalPointEntity> testList() {
-        return repository.findAll();
+        return tagHistoryController.getLatestData(tag);
     }
 
 
     // --- CREATE ---
     @PostMapping("/api/tags/data")
     public HistoricalPoint writeData(@RequestBody DataPointRequest request) {
-        return ths.writeDataPoint(
+        return tagHistoryController.writeDataPoint(
                 request.tag(),
                 request.value(),
                 request.quality()
@@ -72,6 +49,6 @@ public class HistoryController {
 
     @PostMapping("/api/tags/batch")
     public List<HistoricalPoint> writeBatch(@RequestBody List<DataPointRequest> requests) {
-        return ths.writeBatch(requests);
+        return tagHistoryController.writeBatch(requests);
     }
 }
