@@ -1,15 +1,12 @@
 package com.victor.industrial_api.controller;
 
 import com.victor.industrial_api.dto.DataPointRequest;
-import com.victor.industrial_api.entity.HistoricalPointEntity;
 import com.victor.industrial_api.model.HistoricalPoint;
 import com.victor.industrial_api.model.Quality;
-import com.victor.industrial_api.repository.HistoricalPointRepository;
 import com.victor.industrial_api.service.TagHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -21,12 +18,11 @@ public class HistoryController {
     public List<HistoricalPoint> history(
             @RequestParam String tag,
             @RequestParam(defaultValue = "10") int points,
-            @RequestParam(defaultValue = "0") int interval,
             @RequestParam(required = false) String start,
             @RequestParam(required = false) String end,
             @RequestParam(required = false) Quality quality
             ) {
-        return tagHistoryController.getHistoricalData(tag, points, interval, start, end, quality);
+        return tagHistoryController.getHistoricalData(tag, points, start, end, quality);
     }
 
     @GetMapping("/api/tags/latest")
