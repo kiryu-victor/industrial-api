@@ -13,6 +13,16 @@ target/
 .springBeans
 .sts4-cache
 
+### Custom from AI ###
+*.class
+application.properties
+application-*.properties
+*.env
+*.xml~
+.DS_Store
+Thumbs.db
+postgres_data/
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

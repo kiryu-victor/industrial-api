@@ -27,7 +27,7 @@ public class TagHistoryService {
 
 
     // ----- TAG CONFIG -----
-    public record TagConfig(float baseValue, float range, int intervalSeconds) {};
+    public record TagConfig(float baseValue, float range, int intervalSeconds) {}
 
     public TagConfig getTagConfig(String tagName) {
         return switch (tagName) {
@@ -80,7 +80,7 @@ public class TagHistoryService {
     }
 
     public List<HistoricalPoint> getHistoricalData(
-            String tagName, int points, int customInterval,
+            String tagName, int points,
             String start, String end, Quality quality) {
         // Validation
         if (tagName == null || tagName.isEmpty()) {
