@@ -54,7 +54,7 @@ public class TagHistoryService {
     private HistoricalPoint toRecord(HistoricalPointEntity entity) {
         return new HistoricalPoint(
                 entity.getTimeStamp(),
-                entity.getValue(),
+                entity.getDataValue(),
                 entity.getQuality()
         );
     }
