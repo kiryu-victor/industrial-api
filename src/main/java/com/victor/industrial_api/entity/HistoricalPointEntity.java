@@ -19,7 +19,7 @@ public class HistoricalPointEntity {
     private Instant timeStamp;
 
     @Column(nullable = false)
-    private float value;
+    private float dataValue;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -28,10 +28,10 @@ public class HistoricalPointEntity {
     // --- CONSTRUCTOR ---
     public HistoricalPointEntity() {}
 
-    public HistoricalPointEntity(String tagName, Instant timeStamp, float value, Quality quality) {
+    public HistoricalPointEntity(String tagName, Instant timeStamp, float dataValue, Quality quality) {
         this.tagName = tagName;
         this.timeStamp = timeStamp;
-        this.value = value;
+        this.dataValue = dataValue;
         this.quality = quality;
     }
 
@@ -57,11 +57,11 @@ public class HistoricalPointEntity {
         this.timeStamp = timeStamp;
     }
 
-    public float getValue() {
-        return value;
+    public float getDataValue() {
+        return dataValue;
     }
-    public void setValue(float value) {
-        this.value = value;
+    public void setDataValue(float dataValue) {
+        this.dataValue = dataValue;
     }
 
     public Quality getQuality() {
